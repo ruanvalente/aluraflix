@@ -1,27 +1,27 @@
 package com.aluraflix.backend.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import lombok.*;
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id"})
+@AllArgsConstructor
 @ToString
 
 @Entity
-@Table(name = "video")
-public class Video {
-    private static final String SEQUENCE = "seq_intercorrencia";
+@Table(name = "category")
+public class Category {
+    private static final String SEQUENCE = "seq_category";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = SEQUENCE, sequenceName = SEQUENCE, allocationSize = 1)
     @Column(name = "id")
+
     private Long id;
 
     @NotBlank
@@ -31,12 +31,6 @@ public class Video {
 
     @NotBlank
     @NotNull
-    @Column(name = "description")
-
-    private String description;
-
-    @NotBlank
-    @NotNull
-    @Column(name = "url")
-    private String url;
+    @Column(name = "color")
+    private String color;
 }
