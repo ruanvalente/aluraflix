@@ -11,14 +11,14 @@ import java.util.List;
 public interface VideoMapper {
 
     @Mappings({
-            @Mapping(target = "videoId", ignore = true)
+            @Mapping(target = "id", ignore = true)
     })
     Video sourceToDestination (VideoRequestDTO videoRequestDTO);
 
     @InheritInverseConfiguration
     VideoResponseDTO destinationToSource (final Video video);
 
-    @Mapping(target = "videoId", ignore = true)
+    @Mapping(target = "id", ignore = true)
     void updateSourceToDestination (VideoRequestDTO videoRequestDTO, @MappingTarget Video video);
 
     List<VideoRequestDTO> map (List<Video> videoList);
