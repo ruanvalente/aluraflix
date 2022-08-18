@@ -3,7 +3,6 @@ package com.aluraflix.backend.resources;
 import com.aluraflix.backend.dtos.VideoRequestDTO;
 import com.aluraflix.backend.dtos.VideoResponseDTO;
 import com.aluraflix.backend.entities.Video;
-import com.aluraflix.backend.events.ResourceCreatedEvent;
 import com.aluraflix.backend.resources.services.VideoResourcesService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.ApplicationEventPublisher;
@@ -50,7 +49,6 @@ public class VideoResource {
     @PostMapping(produces = "application/json")
     public ResponseEntity<VideoResponseDTO> save (@Valid @RequestBody VideoRequestDTO videoRequest, HttpServletResponse response){
         VideoResponseDTO videoResponse = service.save(videoRequest);
-        publisher.publishEvent(new ResourceCreatedEvent(this, response, videoResponse.getVideoId()));
         return ResponseEntity.status(HttpStatus.CREATED).body(videoResponse);
     }
 
