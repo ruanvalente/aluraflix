@@ -5,6 +5,7 @@ import com.aluraflix.backend.dtos.VideoResponseDTO;
 import com.aluraflix.backend.entities.Video;
 import com.aluraflix.backend.events.ResourceCreatedEvent;
 import com.aluraflix.backend.resources.services.VideoResourcesService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class VideoResource {
         this.publisher = publisher;
     }
 
-//    @ApiOperation(value = "Retorna todas as intercorrências")
+    @ApiOperation(value = "Retorna todas os vídeos.")
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<Video>> findAll() {
         List<Video> intercorrenciaList = service.findAll();
@@ -36,7 +37,7 @@ public class VideoResource {
     }
 
 
-//    @ApiOperation(value = "Retorna uma intercorrência por ID")
+    @ApiOperation(value = "Retorna um vídeo por ID")
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<VideoResponseDTO> findById(@PathVariable Long id){
         VideoResponseDTO videoResponse = service.findById(id);
@@ -45,7 +46,7 @@ public class VideoResource {
                 : ResponseEntity.notFound().build();
     }
 
-//    @ApiOperation(value = "Cria uma nova intercorrência")
+    @ApiOperation(value = "Cria um novo vídeo")
     @PostMapping(produces = "application/json")
     public ResponseEntity<VideoResponseDTO> save (@Valid @RequestBody VideoRequestDTO videoRequest, HttpServletResponse response){
         VideoResponseDTO videoResponse = service.save(videoRequest);
@@ -53,13 +54,13 @@ public class VideoResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(videoResponse);
     }
 
-//    @ApiOperation(value = "Edita uma intercorrência por ID")
+    @ApiOperation(value = "Edita um vídeo por ID")
     @PutMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<VideoResponseDTO> update (@PathVariable Long id, @Valid @RequestBody VideoRequestDTO videoRequest){
         VideoResponseDTO videoResponse = service.update(id, videoRequest);
         return ResponseEntity.ok(videoResponse);
     }
-//    @ApiOperation(value = "Remove uma intercorrência por ID")
+    @ApiOperation(value = "Remove um vídeo por ID")
     @DeleteMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
