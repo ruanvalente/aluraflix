@@ -42,6 +42,15 @@ public class VideoResourcesService {
         return mapper.destinationToSource(video);
     }
 
+    public VideoResponseDTO findByTitle(String title) {
+        Video video = service.findByTitle(title);
+        if (Objects.isNull(video)){
+            throw new AluraflixException(HttpStatus.NOT_FOUND, "Não foi possível recuperar o recurso informado. Por favor contate o administrador do sistema.");
+
+        }
+        return mapper.destinationToSource(video);
+    }
+
     public VideoResponseDTO save(VideoRequestDTO videoRequestDTO) {
         Video videoConverted =
                 mapper.sourceToDestination(videoRequestDTO);
