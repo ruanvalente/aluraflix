@@ -20,12 +20,9 @@ import java.util.Objects;
 public class VideoResource {
 
     private final VideoResourcesService service;
-    private final ApplicationEventPublisher publisher;
 
-
-    public VideoResource(VideoResourcesService service, ApplicationEventPublisher publisher) {
+    public VideoResource(VideoResourcesService service) {
         this.service = service;
-        this.publisher = publisher;
     }
 
     @ApiOperation(value = "Retorna todas os vídeos.")
@@ -34,7 +31,6 @@ public class VideoResource {
         List<Video> intercorrenciaList = service.findAll();
         return ResponseEntity.ok().body(intercorrenciaList);
     }
-
 
     @ApiOperation(value = "Retorna um vídeo por ID")
     @GetMapping(value = "/{id}", produces = "application/json")
