@@ -24,9 +24,15 @@ public class VideoService {
 
     @Transactional
     public Video findById(Long id) {return this.repository.findById(id).orElse(null);}
+    @Transactional
+    public Video findByTitle(String title) {
+        return this.repository.findByTitle(title);
+    }
 
     @Transactional
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+
 }

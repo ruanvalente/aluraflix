@@ -5,7 +5,6 @@ import com.aluraflix.backend.dtos.VideoResponseDTO;
 import com.aluraflix.backend.entities.Video;
 import com.aluraflix.backend.resources.services.VideoResourcesService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,14 +27,24 @@ public class VideoResource {
     @ApiOperation(value = "Retorna todas os vídeos.")
     @GetMapping(produces = "application/json")
     public ResponseEntity<List<Video>> findAll() {
-        List<Video> intercorrenciaList = service.findAll();
-        return ResponseEntity.ok().body(intercorrenciaList);
+        List<Video> videoList = service.findAll();
+        return ResponseEntity.ok().body(videoList);
     }
 
     @ApiOperation(value = "Retorna um vídeo por ID")
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<VideoResponseDTO> findById(@PathVariable Long id){
         VideoResponseDTO videoResponse = service.findById(id);
+        return Objects.nonNull(videoResponse)
+                ? ResponseEntity.ok(videoResponse)
+                : ResponseEntity.notFound().build();
+    }
+
+    @ApiOperation(value = "Busca um vídeo por titulo")
+    @GetMapping(produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, params = {"search"})
+    public ResponseEntity<VideoResponseDTO> findByTitle(@RequestParam String search){
+        VideoResponseDTO videoResponse = service.findByTitle(search);
         return Objects.nonNull(videoResponse)
                 ? ResponseEntity.ok(videoResponse)
                 : ResponseEntity.notFound().build();
