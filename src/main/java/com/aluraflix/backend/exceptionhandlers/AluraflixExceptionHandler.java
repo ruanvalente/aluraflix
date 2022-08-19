@@ -1,6 +1,6 @@
 package com.aluraflix.backend.exceptionhandlers;
 
-import com.aluraflix.backend.exceptions.VideoException;
+import com.aluraflix.backend.exceptions.AluraflixException;
 import lombok.Getter;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.context.MessageSource;
@@ -25,11 +25,11 @@ import java.util.Collections;
 import java.util.List;
 
 @ControllerAdvice
-public class VideoExceptionHandler extends ResponseEntityExceptionHandler {
+public class AluraflixExceptionHandler extends ResponseEntityExceptionHandler {
 
 	private final MessageSource messageSource;
 
-	public VideoExceptionHandler(MessageSource messageSource) {
+	public AluraflixExceptionHandler(MessageSource messageSource) {
 		this.messageSource = messageSource;
 	}
 
@@ -69,8 +69,8 @@ public class VideoExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
-	@ExceptionHandler({VideoException.class})
-	public ResponseEntity<Object> handleLuxoMobileException(VideoException ex, WebRequest request) {
+	@ExceptionHandler({AluraflixException.class})
+	public ResponseEntity<Object> handleLuxoMobileException(AluraflixException ex, WebRequest request) {
 		String mensagemUsuario = ex.getMessage();
 		String mensagemDesenvolvedor = String.format("Code: %s, Msg: %s, Detail: %s", ex.getStatus().toString(), ex.getMessage(), ex.getMensageDetail());
 		List<Erro> erros = Collections.singletonList(new Erro(mensagemUsuario, mensagemDesenvolvedor));

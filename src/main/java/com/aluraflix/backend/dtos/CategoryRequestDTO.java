@@ -5,14 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class VideoResponseDTO {
+public class CategoryRequestDTO {
 
-    private Long id;
+    @NotBlank
+    @NotNull
     private String title;
-    private String description;
-    private String url;
+    @NotBlank
+    @NotNull
+    private String color;
 }

@@ -1,6 +1,8 @@
 package com.aluraflix.backend.config.seed;
 
+import com.aluraflix.backend.entities.Category;
 import com.aluraflix.backend.entities.Video;
+import com.aluraflix.backend.repositories.CategoryRepository;
 import com.aluraflix.backend.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,9 @@ public class SeedingDatabase implements CommandLineRunner {
     @Autowired
     private VideoRepository videoRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Video video1 = new Video(null, "Estrutura de Dados com Java | Lista Encadeada | Introdução", "Curso de Estrutura de Dados com Java - Lista Encadeada (Lista Ligada): vídeo de introdução do módulo, criação das classes no Java e adicionando um elemento na lista encadeada", "https://www.youtube.com/watch?v=RW0oD2L_tSg");
@@ -25,5 +30,11 @@ public class SeedingDatabase implements CommandLineRunner {
         Video video6 = new Video(null, "Governança, Qualidade de Dados e NoSQL: dá para combinar? - Danielle Monteiro", "Danielle Monteiro, Senior Data Architect da B3, fala sobre Governança, Qualidade de Dados e NoSQL: dá para combinar?no iMasters InterCon 2017.", "https://www.youtube.com/watch?v=DZRBV6FjuSw");
 
         videoRepository.saveAll(Arrays.asList(video1, video2, video3, video4, video5, video6));
+
+        Category category1 = new Category(null, "Frontend", "blue");
+        Category category2 = new Category(null, "Backend", "orange");
+        Category category3 = new Category(null, "Mobile", "red");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
     }
 }

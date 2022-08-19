@@ -9,10 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class VideoResponseDTO {
+public class CategoryResponseDTO {
 
     private Long id;
     private String title;
-    private String description;
-    private String url;
+    private String color;
 }

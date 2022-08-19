@@ -29,6 +29,7 @@ public class Category {
     @Column(name = "title")
     private String title;
 
+
     @NotBlank
     @NotNull
     @Column(name = "color")

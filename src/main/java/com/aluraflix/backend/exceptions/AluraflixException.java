@@ -1,21 +1,21 @@
 package com.aluraflix.backend.exceptions;
 
 import org.springframework.http.HttpStatus;
-public class VideoException extends RuntimeException {
+public class AluraflixException extends RuntimeException {
 
     private HttpStatus status;
     private String mensageDetail;
 
-    public VideoException() {
+    public AluraflixException() {
     }
 
-    public VideoException(HttpStatus status, String message, String mensageDetail) {
+    public AluraflixException(HttpStatus status, String message, String mensageDetail) {
         super (message);
         this.status = status;
         this.mensageDetail = mensageDetail;
     }
 
-    public VideoException(HttpStatus status, String message) {
+    public AluraflixException(HttpStatus status, String message) {
         super (message);
         this.status = status;
     }
